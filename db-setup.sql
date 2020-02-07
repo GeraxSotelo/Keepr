@@ -1,4 +1,4 @@
--- USE keepr13;
+-- USE keepr23;
 
 -- CREATE TABLE vaults (
 --     id int NOT NULL AUTO_INCREMENT,
@@ -55,3 +55,9 @@
 -- DROP TABLE IF EXISTS vaults;
 -- DROP TABLE IF EXISTS keeps;
 -- DROP TABLE IF EXISTS users;
+
+
+-- INSERT INTO keeps 
+-- (userId, name, description, img, isPrivate, views , shares, keeps)
+-- VALUES
+-- ("Fake userId", "Fake Name", "Fake Description", "Fake Img", "Fake IsPrivate", "Fake Views", "Fake Shares", "Fake Keeps");
