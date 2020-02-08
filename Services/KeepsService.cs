@@ -24,6 +24,12 @@ namespace Keepr.Services
       if (found == null) { throw new Exception("Invalid Id"); }
       return found;
     }
+
+    internal IEnumerable<Keep> GetKeepsByVaultId(int vaultId)
+    {
+      return _repo.GetKeepsByVaultId(vaultId);
+    }
+
     public Keep Create(Keep newKeep)
     {
       newKeep.Id = _repo.Create(newKeep);
@@ -45,6 +51,5 @@ namespace Keepr.Services
       _repo.Delete(id);
       return "Successfully Deleted";
     }
-
   }
 }

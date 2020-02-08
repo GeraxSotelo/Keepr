@@ -20,7 +20,7 @@ namespace Keepr.Repositories
       string sql = @"
       SELECT * FROM vaultkeeps
       WHERE (keepId = @KeepId AND vaultId = @VaultId)";
-      return _db.QueryFirstOrDefault(sql, newData);
+      return _db.QueryFirstOrDefault<VaultKeep>(sql, newData);
     }
 
     internal void Create(VaultKeep VaultKeepData)
