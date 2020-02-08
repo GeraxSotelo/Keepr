@@ -1,5 +1,5 @@
 <template>
-  <nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
     <router-link class="navbar-brand" :to="{ name: 'home' }">Keepr</router-link>
     <button
       class="navbar-toggler"
@@ -23,6 +23,13 @@
           :class="{ active: $route.name == 'dashboard' }"
         >
           <router-link class="nav-link" :to="{ name: 'dashboard' }">My-Dashboard</router-link>
+        </li>
+        <li
+          class="nav-item"
+          v-if="$auth.isAuthenticated"
+          :class="{ active: $route.name == 'dashboard' }"
+        >
+          <a class="nav-link">Create Vault</a>
         </li>
       </ul>
       <span class="navbar-text">
