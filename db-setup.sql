@@ -61,3 +61,11 @@
 -- (userId, name, description, img, isPrivate, views , shares, keeps)
 -- VALUES
 -- ("Fake userId", "Fake Name", "Fake Description", "Fake Img", "Fake IsPrivate", "Fake Views", "Fake Shares", "Fake Keeps");
+
+-- INSERT INTO vaults 
+-- (userId, name, description)
+-- VALUES
+-- ("Fake userId", "Fake Name", "Fake Description");
+
+-- SELECT * FROM `keepr23`.`keeps` LIMIT 100;
+-- SELECT * FROM `keepr23`.`vaults` LIMIT 100;
