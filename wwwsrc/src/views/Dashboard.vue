@@ -1,7 +1,8 @@
 <template>
-  <div class="dashboard">
+  <div class="dashboard container-fluid">
     <h1>WELCOME TO THE DASHBOARD</h1>
-    public {{ publicKeeps }} user {{ userKeeps }}
+
+    <!-- user {{userKeeps}} -->
   </div>
 </template>
 
