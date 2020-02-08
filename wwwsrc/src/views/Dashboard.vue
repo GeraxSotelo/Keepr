@@ -12,8 +12,8 @@
       </div>
     </div>
 
-    <div class="row pt-1">
-      <div class="col-12 col-md-4" v-for="vault in vaults" :key="vault.id">
+    <div class="row justify-content-around pt-1">
+      <div class="col-12 col-sm-6 col-md-4 pt-1 pb-1" v-for="vault in vaults" :key="vault.id">
         <div class="card">
           <div class="card-body">
             <h5 class="card-title text-white">{{vault.name}}</h5>
@@ -58,11 +58,14 @@ export default {
   background-size: cover;
   border-radius: 10px;
   box-shadow: 5px 10px 10px rgba(0, 0, 0, 0.35);
-  width: 18rem;
+  min-width: 10rem;
   height: 15rem;
-  max-width: 18rem;
 }
 .card:hover {
+  background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
+    url("https://s3.amazonaws.com/bncore/wp-content/uploads/2019/08/vault-237-vault-straight-900x570.jpg")
+      no-repeat center;
+  background-size: cover;
   box-shadow: 5px 15px 30px rgba(0, 0, 0, 0.4);
   transform: scale(1.03);
 }
