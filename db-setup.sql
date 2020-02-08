@@ -65,7 +65,7 @@
 -- INSERT INTO vaults 
 -- (userId, name, description)
 -- VALUES
--- ("Fake userId", "Fake Name", "Fake Description");
+-- ("auth0|5e3dcc35fc624b0e8060c777", "new Fake Name", "new Fake Description");
 
 -- INSERT INTO vaultkeeps
 -- (userId, keepId, vaultId)
