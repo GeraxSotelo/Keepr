@@ -43,14 +43,14 @@
 -- )
 
 
--- -- USE THIS LINE FOR GET KEEPS BY VAULTID
+-- -- -- USE THIS LINE FOR GET KEEPS BY VAULTID
 -- SELECT k.* FROM vaultkeeps vk
 -- INNER JOIN keeps k ON k.id = vk.keepId 
 -- WHERE (vaultId = @vaultId AND vk.userId = @userId) 
 
 
 
--- -- USE THIS TO CLEAN OUT YOUR DATABASE
+-- -- -- USE THIS TO CLEAN OUT YOUR DATABASE
 -- DROP TABLE IF EXISTS vaultkeeps;
 -- DROP TABLE IF EXISTS vaults;
 -- DROP TABLE IF EXISTS keeps;
@@ -67,5 +67,11 @@
 -- VALUES
 -- ("Fake userId", "Fake Name", "Fake Description");
 
+-- INSERT INTO vaultkeeps
+-- (userId, keepId, vaultId)
+-- VALUES
+-- ("Fake userId", 3, 1);
+
 -- SELECT * FROM `keepr23`.`keeps` LIMIT 100;
 -- SELECT * FROM `keepr23`.`vaults` LIMIT 100;
+-- SELECT * FROM `keepr23`.`vaultkeeps` LIMIT 100;
