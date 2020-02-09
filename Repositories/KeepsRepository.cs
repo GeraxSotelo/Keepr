@@ -32,8 +32,9 @@ namespace Keepr.Repositories
       string sql = @"
       SELECT k.* FROM vaultkeeps vk
       INNER JOIN keeps k ON k.id = vk.keepId 
-      WHERE (vaultId = @VaultId AND vk.userId = @UserId)  ";
+      WHERE (vaultId = @VaultId)";
       return _db.Query<Keep>(sql, new { vaultId });
+      //STUB removed AND vk.userId = @UserId. Ask about it
     }
 
     internal int Create(Keep KeepData)

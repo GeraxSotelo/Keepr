@@ -70,7 +70,7 @@
 -- INSERT INTO vaultkeeps
 -- (userId, keepId, vaultId)
 -- VALUES
--- ("Fake userId", 3, 1);
+-- ("Fake userId", 17, 9);
 
 -- SELECT * FROM `keepr23`.`keeps` LIMIT 100;
 -- SELECT * FROM `keepr23`.`vaults` LIMIT 100;

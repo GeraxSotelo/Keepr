@@ -36,6 +36,8 @@ export default {
     onAuth().then(res => {
       this.$store.dispatch("getVaults");
     });
+    //TODO  make this method in the store!!!
+    // this.$store.dispatch("resetActiveVault");
   },
   computed: {
     vaults() {
