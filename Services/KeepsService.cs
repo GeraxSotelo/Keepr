@@ -32,6 +32,10 @@ namespace Keepr.Services
 
     public Keep Create(Keep newKeep)
     {
+      if (newKeep.Img == "")
+      {
+        newKeep.Img = "https://via.placeholder.com/150";
+      }
       newKeep.Id = _repo.Create(newKeep);
       return newKeep;
     }

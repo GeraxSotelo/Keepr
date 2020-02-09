@@ -1,13 +1,13 @@
 <template>
   <div class="dashboard container-fluid">
-    <div class="row justify-content-around pb-1">
+    <div class="row justify-content-around pb-3 pt-2">
       <div class="col-12 text-center">
         <h1>My Keeps</h1>
       </div>
-      <div class="col-6 text-right">
-        <button class="btn btn-primary">Create Keep</button>
+      <div class="col-6 text-right mt-1 mb-3">
+        <button @click="createKeep" class="btn btn-primary">Create Keep</button>
       </div>
-      <div class="col-6 text-left">
+      <div class="col-6 text-left mt-1 mb-3">
         <button @click="createVault" class="btn btn-success">Create Vault</button>
       </div>
     </div>
@@ -32,6 +32,8 @@
 <script>
 import NS from "../NotificationService.js";
 import { onAuth } from "@bcwdev/auth0-vue";
+import Swal from "sweetalert2";
+
 export default {
   name: "Dashboard",
   mounted() {
@@ -47,6 +49,12 @@ export default {
     }
   },
   methods: {
+    async createKeep() {
+      let keepData = await NS.inputKeepData("Enter Keep Info");
+      if (keepData) {
+        this.$store.dispatch("createKeep", keepData);
+      }
+    },
     async createVault() {
       let vaultData = await NS.inputVaultData("Enter Vault Info", {});
       if (vaultData) {
@@ -70,6 +78,7 @@ export default {
   min-width: 10rem;
   height: 15rem;
 }
+
 .card:hover {
   background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
     url("../assets/vault-open.jpg") no-repeat center;
@@ -77,24 +86,28 @@ export default {
   box-shadow: 5px 15px 30px rgba(0, 0, 0, 0.4);
   transform: scale(1.03);
 }
+
 .card-body {
   flex: 0 1 auto;
 }
+
 .vault-link {
   flex: 1 1 auto;
 }
+
 .delete-vault {
-  display: none;
   height: 1.5em;
   position: absolute;
   top: -10%;
 }
+
 .fa-times-circle {
   cursor: pointer;
   display: none;
+  padding: 0.25em;
 }
+
 .card:hover .fa-times-circle,
-.card:hover .delete-vault,
 .delete-vault:hover .fa-times-circle {
   display: inline-block;
 }

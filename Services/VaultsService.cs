@@ -37,11 +37,11 @@ namespace Keepr.Services
     //   return update;
     // }
 
-    internal String Delete(int id)
+    internal String Delete(int id, string userId)
     {
       var found = _repo.GetById(id);
       if (found == null) { throw new Exception("Invalid Id"); }
-      _repo.Delete(id);
+      _repo.Delete(id, userId);
       return "Successfully Deleted";
     }
 
