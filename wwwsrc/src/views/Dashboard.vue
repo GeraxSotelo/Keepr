@@ -13,15 +13,17 @@
     </div>
 
     <div class="row justify-content-around pt-1">
-      <div class="col-12 col-sm-6 col-md-4 pt-1 pb-1" v-for="vault in vaults" :key="vault.id">
-        <router-link :to="{name:'vaultdetails', params: { vaultId: vault.id}}">
-          <div class="card">
-            <div class="card-body">
-              <h5 class="card-title text-white">{{vault.name}}</h5>
-              <h6 class="card-subtitle mb-2 text-white">{{vault.description}}</h6>
-            </div>
+      <div class="col-12 col-sm-6 col-md-4 pt-1 pb-3 mb-3" v-for="vault in vaults" :key="vault.id">
+        <div class="card">
+          <div class="delete-vault text-right w-100">
+            <i @click="deleteVault(vault.id)" class="far fa-times-circle"></i>
           </div>
-        </router-link>
+          <div class="card-body text-center">
+            <h5 class="card-title text-white">{{vault.name}}</h5>
+            <h6 class="card-subtitle mb-2 text-white">{{vault.description}}</h6>
+          </div>
+          <router-link class="vault-link" :to="{name:'vaultdetails', params: { vaultId: vault.id}}"></router-link>
+        </div>
       </div>
     </div>
   </div>
@@ -50,6 +52,9 @@ export default {
       if (vaultData) {
         this.$store.dispatch("createVault", vaultData);
       }
+    },
+    deleteVault(id) {
+      this.$store.dispatch("deleteVault", id);
     }
   }
 };
@@ -62,7 +67,6 @@ export default {
   background-size: cover;
   border-radius: 10px;
   box-shadow: 5px 10px 10px rgba(0, 0, 0, 0.35);
-  cursor: pointer;
   min-width: 10rem;
   height: 15rem;
 }
@@ -72,5 +76,26 @@ export default {
   background-size: cover;
   box-shadow: 5px 15px 30px rgba(0, 0, 0, 0.4);
   transform: scale(1.03);
+}
+.card-body {
+  flex: 0 1 auto;
+}
+.vault-link {
+  flex: 1 1 auto;
+}
+.delete-vault {
+  display: none;
+  height: 1.5em;
+  position: absolute;
+  top: -10%;
+}
+.fa-times-circle {
+  cursor: pointer;
+  display: none;
+}
+.card:hover .fa-times-circle,
+.card:hover .delete-vault,
+.delete-vault:hover .fa-times-circle {
+  display: inline-block;
 }
 </style>
