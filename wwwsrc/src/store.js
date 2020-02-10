@@ -16,7 +16,8 @@ let api = Axios.create({
 export default new Vuex.Store({
   state: {
     publicKeeps: [],
-    privateKeeps: [],
+    userKeeps: [],
+    vaultKeeps: [],
     vaults: [],
     activeVault: {}
   },
@@ -24,8 +25,11 @@ export default new Vuex.Store({
     setPublicKeeps(state, data) {
       state.publicKeeps = data;
     },
-    setPrivateKeeps(state, data) {
-      state.privateKeeps = data;
+    setUserKeeps(state, data) {
+      state.userKeeps = data;
+    },
+    setVaultKeeps(state, data) {
+      state.vaultKeeps = data;
     },
     setVaults(state, data) {
       state.vaults = data;
@@ -57,9 +61,14 @@ export default new Vuex.Store({
       }
     },
 
+    async getKeepsByUserId({ commit, dispatch }) {
+      let res = await api.get("keeps/userkeeps");
+      commit("setUserKeeps", res.data);
+    },
+
     async getKeepsByVaultId({ commit, dispatch }, vaultId) {
       let res = await api.get("vaults/" + vaultId + "/keeps");
-      commit("setPrivateKeeps", res.data);
+      commit("setVaultKeeps", res.data);
     },
 
     async getVaults({ commit, dispatch }) {

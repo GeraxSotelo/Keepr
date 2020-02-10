@@ -26,19 +26,29 @@
         </div>
       </div>
     </div>
+
+    <div class="row pt-5">
+      <div class="col-12 text-center pb-2">
+        <h1>My Created Keeps</h1>
+      </div>
+      <div class="col-6 col-md-3 pt-1 pb-1 mt-3 mb-3" v-for="keep in userKeeps" :key="keep.id">
+        <Keep :keepData="keep" />
+      </div>
+    </div>
   </div>
 </template>
 
 <script>
-import NS from "../NotificationService.js";
 import { onAuth } from "@bcwdev/auth0-vue";
 import Swal from "sweetalert2";
-
+import NS from "../NotificationService.js";
+import Keep from "@/components/Keep.vue";
 export default {
   name: "Dashboard",
   mounted() {
     onAuth().then(res => {
       this.$store.dispatch("getVaults");
+      this.$store.dispatch("getKeepsByUserId");
     });
     //TODO  make this method in the store!!!
     // this.$store.dispatch("resetActiveVault");
@@ -46,6 +56,9 @@ export default {
   computed: {
     vaults() {
       return this.$store.state.vaults;
+    },
+    userKeeps() {
+      return this.$store.state.userKeeps;
     }
   },
   methods: {
@@ -81,6 +94,9 @@ export default {
     deleteVault(id) {
       this.$store.dispatch("deleteVault", id);
     }
+  },
+  components: {
+    Keep
   }
 };
 </script>

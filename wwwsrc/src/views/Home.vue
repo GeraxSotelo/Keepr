@@ -6,7 +6,11 @@
       </div>
     </div>
     <div class="row">
-      <div class="card-container col-6 col-md-3" v-for="keep in publicKeeps" :key="keep.id">
+      <div
+        class="card-container col-6 col-md-3 pt-1 pb-1 mt-3 mb-3"
+        v-for="keep in publicKeeps"
+        :key="keep.id"
+      >
         <Keep :keepData="keep" />
       </div>
     </div>

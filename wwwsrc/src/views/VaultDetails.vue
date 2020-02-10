@@ -9,7 +9,7 @@
       </div>
     </div>
     <div class="row">
-      <div class="col-6 col-md-3" v-for="keep in privateKeeps" :key="keep.id">
+      <div class="col-6 col-md-3" v-for="keep in vaultKeeps" :key="keep.id">
         <Keep :keepData="keep" />
       </div>
     </div>
@@ -35,8 +35,8 @@ export default {
     vault() {
       return this.$store.state.activeVault;
     },
-    privateKeeps() {
-      return this.$store.state.privateKeeps;
+    vaultKeeps() {
+      return this.$store.state.vaultKeeps;
     }
   },
   methods: {},

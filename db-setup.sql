@@ -58,9 +58,9 @@
 
 
 -- INSERT INTO keeps 
--- (userId, name, description, img, isPrivate, views , shares, keeps)
+-- (userId, name, description, img, isPrivate)
 -- VALUES
--- ("Fake userId", "Fake Name", "Fake Description", "Fake Img", 0, "Fake Views", "Fake Shares", "Fake Keeps");
+-- ("Fake userId", "Fake Name", "Fake Description", "https://picsum.photos/300/400", 0);
 
 -- INSERT INTO vaults 
 -- (userId, name, description)

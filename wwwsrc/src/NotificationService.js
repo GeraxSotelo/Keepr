@@ -97,7 +97,7 @@ export default class NotificationService {
         title: "Which Vault would you like your Keep in?",
         input: 'select',
         inputOptions: { ...vaults },
-        inputPlaceholder: 'Select a Vault',
+        inputPlaceholder: 'None',
         showCancelButton: true,
       })
 
