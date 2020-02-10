@@ -9,8 +9,8 @@
       </div>
     </div>
     <div class="row">
-      <div class="col-6 col-md-3" v-for="keep in vaultKeeps" :key="keep.id">
-        <Keep :keepData="keep" />
+      <div class="col-6 col-md-3 pt-1 pb-1 mt-3 mb-5" v-for="keep in vaultKeeps" :key="keep.id">
+        <Keep :keepData="keep" :vaultId="vaultId" />
       </div>
     </div>
   </div>

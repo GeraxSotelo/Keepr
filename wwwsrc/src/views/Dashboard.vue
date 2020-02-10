@@ -31,7 +31,7 @@
       <div class="col-12 text-center pb-2">
         <h1>My Created Keeps</h1>
       </div>
-      <div class="col-6 col-md-3 pt-1 pb-1 mt-3 mb-3" v-for="keep in userKeeps" :key="keep.id">
+      <div class="col-6 col-md-3 pt-1 pb-1 mt-3 mb-5" v-for="keep in userKeeps" :key="keep.id">
         <Keep :keepData="keep" />
       </div>
     </div>

@@ -76,4 +76,4 @@
 -- SELECT * FROM `keepr23`.`vaults` LIMIT 100;
 -- SELECT * FROM `keepr23`.`vaultkeeps` LIMIT 100;
 
--- DELETE FROM keeps WHERE id = 19;
+-- DELETE FROM keeps WHERE id = 9;

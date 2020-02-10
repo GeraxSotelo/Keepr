@@ -1,6 +1,9 @@
 <template>
   <div class="keep">
     <div class="card">
+      <div v-if="keepData.isPrivate" class="delete-keep text-right w-100">
+        <i @click="deleteKeep(keepData.id)" class="far fa-times-circle"></i>
+      </div>
       <img :src="keepData.img" class="card-img-top" />
       <div class="card-body">
         <h5 class="card-title">{{keepData.name}}</h5>
@@ -14,7 +17,7 @@
             <div class="cp w-100">
               <i class="fas fa-share-alt"></i>
             </div>
-            <div @click="keep(keepData.id)" class="cp w-100">
+            <div @click="collectKeep(keepData.id)" class="cp w-100">
               <i class="fas fa-box-open"></i>
             </div>
           </div>
@@ -44,7 +47,7 @@
 import NS from "../NotificationService.js";
 export default {
   name: "Keep",
-  props: ["keepData"],
+  props: ["keepData", "vaultId"],
   data() {
     return {};
   },
@@ -54,7 +57,7 @@ export default {
     }
   },
   methods: {
-    async keep(KeepId) {
+    async collectKeep(KeepId) {
       let vaults = this.getVaultInfo();
       if (this.$auth.isAuthenticated) {
         let id = await NS.pickVault(vaults);
@@ -73,6 +76,12 @@ export default {
         newVaults[vault.id] = vault.name;
       });
       return newVaults;
+    },
+    async deleteKeep(id) {
+      await this.$store.dispatch("deleteKeep", id);
+      if (this.$route.name == "vaultdetails") {
+        this.$store.dispatch("getKeepsByVaultId", this.vaultId);
+      }
     }
   }
 };
@@ -94,7 +103,7 @@ export default {
 .card-img-top {
   max-width: 18rem;
   border-radius: 10px 10px 0 0;
-  /* max-height: 18rem; */
+  max-height: 18rem;
 }
 .card,
 .card-body {
@@ -103,5 +112,22 @@ export default {
 .stats-container p {
   font-size: 0.8em;
   margin-bottom: 0;
+}
+
+.delete-keep {
+  height: 1.5em;
+  position: absolute;
+  top: -1.6em;
+}
+
+.fa-times-circle {
+  cursor: pointer;
+  display: none;
+  padding: 0.25em;
+}
+
+.card:hover .fa-times-circle,
+.keep-vault:hover .fa-times-circle {
+  display: inline-block;
 }
 </style>
