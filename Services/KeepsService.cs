@@ -34,7 +34,7 @@ namespace Keepr.Services
     {
       if (newKeep.Img == "")
       {
-        newKeep.Img = "https://via.placeholder.com/150";
+        newKeep.Img = "https://source.unsplash.com/random";
       }
       newKeep.Id = _repo.Create(newKeep);
       return newKeep;

@@ -51,18 +51,17 @@ export default {
   methods: {
     async createKeep() {
       let vaults = this.getVaultInfo();
+      let vaultId = 0;
       let keepData = await NS.inputKeepData("Enter Keep Info");
       if (keepData) {
         if (keepData.IsPrivate == true) {
           let id = await NS.pickVault(vaults);
-          let vaultId = parseInt(id);
-          this.$store.dispatch("createPrivateKeep", {
-            keepData,
-            vaultId
-          });
-        } else {
-          this.$store.dispatch("createPublicKeep", keepData);
+          vaultId = parseInt(id);
         }
+        this.$store.dispatch("createKeep", {
+          keepData,
+          vaultId
+        });
       }
     },
     getVaultInfo() {

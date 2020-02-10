@@ -50,13 +50,11 @@ export default new Vuex.Store({
       commit("setPublicKeeps", res.data);
     },
 
-    async createPublicKeep({ commit, dispatch }, keepData) {
-      let res = await api.post("keeps/", keepData);
-    },
-
-    async createPrivateKeep({ commit, dispatch }, payload) {
+    async createKeep({ commit, dispatch }, payload) {
       let res = await api.post("keeps/", payload.keepData);
-      let vk = await api.post("vaultkeeps", { KeepId: res.data.id, VaultId: payload.vaultId })
+      if (payload.vaultData != NaN) {
+        dispatch("createVaultKeep", { KeepId: res.data.id, VaultId: payload.vaultId });
+      }
     },
 
     async getKeepsByVaultId({ commit, dispatch }, vaultId) {
@@ -82,6 +80,10 @@ export default new Vuex.Store({
     async deleteVault({ commit, dispatch }, id) {
       let res = await api.delete("vaults/" + id);
       dispatch("getVaults");
+    },
+
+    async createVaultKeep({ commit, dispatch }, payload) {
+      let vk = await api.post("vaultkeeps", { KeepId: payload.KeepId, VaultId: payload.VaultId });
     }
   }
 });

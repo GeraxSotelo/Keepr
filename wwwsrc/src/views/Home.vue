@@ -2,7 +2,7 @@
   <div class="home container-fluid">
     <div class="row">
       <div class="col-12 text-center">
-        <h1>Welcome Home</h1>
+        <h1>Peepr Keepr</h1>
       </div>
     </div>
     <div class="row">
