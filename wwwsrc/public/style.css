@@ -1,6 +1,6 @@
-.box_1{
-	/* background: #eee; */
-}
+
+/* Checkbox toggle. Credit to 'thelaazyguy' 
+https://codepen.io/thelaazyguy/pen/MvqpPr/ */
 
 input[type="checkbox"].switch_1{
 	font-size: 30px;
@@ -9,7 +9,7 @@ input[type="checkbox"].switch_1{
 	        appearance: none;
 	width: 2em;
 	height: 1em;
-	background: #ddd;
+	background: #777;
 	border-radius: 3em;
 	position: relative;
 	cursor: pointer;
