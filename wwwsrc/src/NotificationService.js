@@ -17,7 +17,7 @@ export default class NotificationService {
           `<label class="mb-0">Private Keep?</label>` +
           `<div class="switch_box box_1">
 		       <input id="keepIsPrivate" type="checkbox" class="switch_1"></div>` +
-          `<p>Public Keeps cannot deleted once they are posted.</p>` +
+          `<p>Public Keeps cannot be deleted once they are posted.</p>` +
           `<span style="color: red">*</span> indicates required field` +
           `</form>`,
         focusConfirm: false,
@@ -85,6 +85,24 @@ export default class NotificationService {
           Name: formValues[0],
           Description: formValues[1]
         };
+      }
+    } catch (error) {
+      return error;
+    }
+  }
+
+  static async pickVault(vaults) {
+    try {
+      const { value: vault } = await Swal.fire({
+        title: "Which Vault would you like your Keep in?",
+        input: 'select',
+        inputOptions: { ...vaults },
+        inputPlaceholder: 'Select a Vault',
+        showCancelButton: true,
+      })
+
+      if (vault) {
+        return vault;
       }
     } catch (error) {
       return error;

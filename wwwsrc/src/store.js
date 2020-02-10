@@ -50,9 +50,13 @@ export default new Vuex.Store({
       commit("setPublicKeeps", res.data);
     },
 
-    async createKeep({ commit, dispatch }, keepData) {
+    async createPublicKeep({ commit, dispatch }, keepData) {
       let res = await api.post("keeps/", keepData);
-      console.log(res.data);
+    },
+
+    async createPrivateKeep({ commit, dispatch }, payload) {
+      let res = await api.post("keeps/", payload.keepData);
+      let vk = await api.post("vaultkeeps", { KeepId: res.data.id, VaultId: payload.vaultId })
     },
 
     async getKeepsByVaultId({ commit, dispatch }, vaultId) {

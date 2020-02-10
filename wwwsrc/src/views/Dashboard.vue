@@ -50,10 +50,28 @@ export default {
   },
   methods: {
     async createKeep() {
+      let vaults = this.getVaultInfo();
       let keepData = await NS.inputKeepData("Enter Keep Info");
       if (keepData) {
-        this.$store.dispatch("createKeep", keepData);
+        if (keepData.IsPrivate == true) {
+          let id = await NS.pickVault(vaults);
+          let vaultId = parseInt(id);
+          this.$store.dispatch("createPrivateKeep", {
+            keepData,
+            vaultId
+          });
+        } else {
+          this.$store.dispatch("createPublicKeep", keepData);
+        }
       }
+    },
+    getVaultInfo() {
+      let vaults = [...this.vaults];
+      let newVaults = {};
+      vaults.map(vault => {
+        newVaults[vault.id] = vault.name;
+      });
+      return newVaults;
     },
     async createVault() {
       let vaultData = await NS.inputVaultData("Enter Vault Info", {});
@@ -89,6 +107,7 @@ export default {
 
 .card-body {
   flex: 0 1 auto;
+  padding: 0.3em 0 0 0;
 }
 
 .vault-link {
