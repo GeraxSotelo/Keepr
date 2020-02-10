@@ -28,6 +28,9 @@ export default new Vuex.Store({
     setUserKeeps(state, data) {
       state.userKeeps = data;
     },
+    addToUserKeeps(state, data) {
+      state.userKeeps.push(data);
+    },
     setVaultKeeps(state, data) {
       state.vaultKeeps = data;
     },
@@ -58,6 +61,9 @@ export default new Vuex.Store({
       let res = await api.post("keeps/", payload.keepData);
       if (!isNaN(payload.vaultId)) {
         dispatch("createVaultKeep", { KeepId: res.data.id, VaultId: payload.vaultId });
+      }
+      if (res.data.isPrivate) {
+        commit("addToUserKeeps", res.data);
       }
     },
 
