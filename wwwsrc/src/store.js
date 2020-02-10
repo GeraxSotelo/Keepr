@@ -56,7 +56,7 @@ export default new Vuex.Store({
 
     async createKeep({ commit, dispatch }, payload) {
       let res = await api.post("keeps/", payload.keepData);
-      if (payload.vaultData != NaN) {
+      if (!isNaN(payload.vaultId)) {
         dispatch("createVaultKeep", { KeepId: res.data.id, VaultId: payload.vaultId });
       }
     },

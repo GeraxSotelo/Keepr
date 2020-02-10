@@ -2,7 +2,7 @@
   <div class="home container-fluid">
     <div class="row">
       <div class="col-12 text-center">
-        <h1>Peepr Keepr</h1>
+        <h1>Kreepr</h1>
       </div>
     </div>
     <div class="row">
@@ -18,11 +18,15 @@
 </template>
 
 <script>
+import { onAuth } from "@bcwdev/auth0-vue";
 import Keep from "@/components/Keep.vue";
 export default {
   name: "home",
   mounted() {
     this.$store.dispatch("getPublicKeeps");
+    onAuth().then(res => {
+      this.$store.dispatch("getVaults");
+    });
   },
   computed: {
     publicKeeps() {
