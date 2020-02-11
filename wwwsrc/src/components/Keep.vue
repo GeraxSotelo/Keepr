@@ -75,9 +75,7 @@ export default {
             KeepId: keepData.id,
             VaultId
           });
-          keepData.views++;
-          keepData.keeps++;
-          this.$store.dispatch("keepViewCount", keepData);
+          this.increaseKeepCount(keepData);
         }
       } else {
         NS.errorMessage("You must be logged in to keep");
@@ -97,11 +95,21 @@ export default {
         this.$store.dispatch("getKeepsByVaultId", this.vaultId);
       }
     },
-    removeKeep(KeepId) {
-      this.$store.dispatch("removeKeep", {
+    async removeKeep(KeepId) {
+      await this.$store.dispatch("removeKeep", {
         KeepId,
         VaultId: parseInt(this.vaultId)
       });
+      this.decreaseKeepCount();
+    },
+    increaseKeepCount(keepData) {
+      keepData.views++;
+      keepData.keeps++;
+      this.$store.dispatch("keepViewCount", keepData);
+    },
+    decreaseKeepCount() {
+      this.keepData.keeps--;
+      this.$store.dispatch("keepViewCount", this.keepData);
     }
   }
 };

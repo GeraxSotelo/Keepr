@@ -113,8 +113,6 @@ export default new Vuex.Store({
 
     async keepViewCount({ commit, dispatch }, update) {
       let res = await api.put("keeps/" + update.id, update);
-      console.log(res.data);
-
     }
   }
 });
