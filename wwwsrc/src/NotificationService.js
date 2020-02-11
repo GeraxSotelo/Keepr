@@ -63,9 +63,6 @@ export default class NotificationService {
           `<input id="vaultDescription" class="swal2-input" value="${vaultData.description ||
           ""}" placeholder="Description">` +
           `<span style="color: red">*</span> indicates required field` +
-          `<div class="switch_box box_1">
-		      <input type="checkbox" class="switch_1">
-	        </div>`+
           `</form>`,
         focusConfirm: false,
         preConfirm: () => {

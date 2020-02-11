@@ -23,7 +23,41 @@
               <i class="fas fa-eye"></i>
             </div>
             <div class="cp w-100">
-              <i class="fas fa-share-alt"></i>
+              <div class="btn-group dropup">
+                <div data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                  <i class="fas fa-share-alt"></i>
+                </div>
+                <div v-if="this.$auth.isAuthenticated" class="dropdown-menu text-center p-0">
+                  <div class="dropdown-item p-1">
+                    <div
+                      @click="increaseShareCount()"
+                      class="fb-share-button"
+                      data-href="https://blog.yellowoctopus.com.au/wp-content/uploads/2018/03/yellow-octopus-funny-memes-23.jpg"
+                      data-layout="button"
+                      data-size="large"
+                    >
+                      <a
+                        target="_blank"
+                        href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fblog.yellowoctopus.com.au%2Fwp-content%2Fuploads%2F2018%2F03%2Fyellow-octopus-funny-memes-23.jpg&amp;src=sdkpreparse"
+                        class="fb-xfbml-parse-ignore"
+                      >
+                        <i class="fab fa-facebook"></i>
+                      </a>
+                    </div>
+                  </div>
+
+                  <div class="dropdown-item p-1">
+                    <a
+                      @click="increaseShareCount()"
+                      class="twitter-share-button"
+                      :href="'https://twitter.com/intent/tweet?url='+keepData.img"
+                      data-size="large"
+                    >
+                      <i class="fab fa-twitter-square"></i>
+                    </a>
+                  </div>
+                </div>
+              </div>
             </div>
             <div @click="collectKeep(keepData)" class="cp w-100">
               <i class="fas fa-box-open"></i>
@@ -110,6 +144,11 @@ export default {
     decreaseKeepCount() {
       this.keepData.keeps--;
       this.$store.dispatch("keepViewCount", this.keepData);
+    },
+    increaseShareCount() {
+      this.keepData.views++;
+      this.keepData.shares++;
+      this.$store.dispatch("keepViewCount", this.keepData);
     }
   }
 };
@@ -143,6 +182,15 @@ export default {
 .stats-container p {
   font-size: 0.8em;
   margin-bottom: 0;
+}
+.btn-group {
+  vertical-align: unset;
+}
+.dropdown-menu {
+  min-width: 7rem;
+}
+.dropdown-item {
+  border: 1px solid rgb(248, 248, 248);
 }
 .delete-keep {
   height: 1.5em;
