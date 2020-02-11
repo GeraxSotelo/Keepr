@@ -18,6 +18,20 @@ namespace Keepr.Controllers
       _vks = vks;
     }
 
+    [HttpGet("{id}/keeps")] //NOTE TO PASS TESTS
+    [Authorize]
+    public ActionResult<IEnumerable<Keep>> Get(int id)
+    {
+      try
+      {
+        return Ok(_vks.GetKeeps(id));
+      }
+      catch (System.Exception e)
+      {
+        return BadRequest(e.Message);
+      }
+    }
+
     [HttpPost]
     [Authorize]
     public ActionResult<String> Create([FromBody] VaultKeep newVaultKeeps)
@@ -46,6 +60,20 @@ namespace Keepr.Controllers
         return Ok(_vks.Delete(vk));
       }
       catch (Exception e)
+      {
+        return BadRequest(e.Message);
+      }
+    }
+
+    [HttpDelete("{vaultId}/keeps/{keepsId}")]  //NOTE TO PASS TEST
+    [Authorize]
+    public ActionResult<VaultKeep> DeleteVK(int vaultId, int keepId)
+    {
+      try
+      {
+        return _vks.DeleteVK(vaultId, keepId);
+      }
+      catch (System.Exception e)
       {
         return BadRequest(e.Message);
       }

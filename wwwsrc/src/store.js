@@ -109,6 +109,12 @@ export default new Vuex.Store({
 
     async createVaultKeep({ commit, dispatch }, payload) {
       let vk = await api.post("vaultkeeps", { KeepId: payload.KeepId, VaultId: payload.VaultId });
+    },
+
+    async keepViewCount({ commit, dispatch }, update) {
+      let res = await api.put("keeps/" + update.id, update);
+      console.log(res.data);
+
     }
   }
 });

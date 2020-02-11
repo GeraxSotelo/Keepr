@@ -25,7 +25,7 @@
             <div class="cp w-100">
               <i class="fas fa-share-alt"></i>
             </div>
-            <div @click="collectKeep(keepData.id)" class="cp w-100">
+            <div @click="collectKeep(keepData)" class="cp w-100">
               <i class="fas fa-box-open"></i>
             </div>
           </div>
@@ -65,13 +65,19 @@ export default {
     }
   },
   methods: {
-    async collectKeep(KeepId) {
+    async collectKeep(keepData) {
       let vaults = this.getVaultInfo();
       if (this.$auth.isAuthenticated) {
         let id = await NS.pickVault(vaults);
         let VaultId = parseInt(id);
         if (!isNaN(VaultId)) {
-          this.$store.dispatch("createVaultKeep", { KeepId, VaultId });
+          this.$store.dispatch("createVaultKeep", {
+            KeepId: keepData.id,
+            VaultId
+          });
+          keepData.views++;
+          keepData.keeps++;
+          this.$store.dispatch("keepViewCount", keepData);
         }
       } else {
         NS.errorMessage("You must be logged in to keep");

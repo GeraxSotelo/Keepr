@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using Keepr.Models;
 using Keepr.Repositories;
+using Microsoft.AspNetCore.Mvc;
 
 namespace Keepr.Services
 {
@@ -18,6 +19,12 @@ namespace Keepr.Services
       VaultKeep exists = _repo.Find(newVaultKeep);
       if (exists != null) { throw new Exception("Keep already in Vault"); }
       _repo.Create(newVaultKeep);
+      // return "Success";
+    }
+
+    internal IEnumerable<Keep> GetKeeps(int id)
+    {
+      return _repo.GetKeeps(id);
     }
 
     internal String Delete(VaultKeep vk)
@@ -28,5 +35,9 @@ namespace Keepr.Services
       return "Successfully Deleted";
     }
 
+    internal VaultKeep DeleteVK(int vaultId, int keepId)
+    {
+      return _repo.DeleteVK(vaultId, keepId);
+    }
   }
 }
