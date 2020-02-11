@@ -24,7 +24,7 @@ namespace Keepr.Services
     {
       var exists = _repo.Find(vk);
       if (exists == null) { throw new Exception("Invalid Id Combination"); }
-      _repo.Delete(vk.Id);
+      _repo.Delete(vk);
       return "Successfully Deleted";
     }
 

@@ -34,10 +34,10 @@ namespace Keepr.Repositories
       _db.ExecuteScalar<int>(sql, VaultKeepData);
     }
 
-    internal void Delete(int id)
+    internal void Delete(VaultKeep vk)
     {
-      string sql = "DELETE FROM vaultkeeps WHERE id = @id";
-      _db.Execute(sql, new { id });
+      string sql = "DELETE FROM vaultkeeps WHERE (userId = @UserId AND keepId = @KeepId AND vaultId = @VaultId)";
+      _db.Execute(sql, vk);
     }
   }
 }
