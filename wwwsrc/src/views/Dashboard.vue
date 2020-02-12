@@ -1,5 +1,5 @@
 <template>
-  <div class="dashboard container-fluid">
+  <div class="dashboard container-fluid bg-light">
     <div class="row justify-content-around pb-3 pt-2">
       <div class="col-12 text-center">
         <h1>My Keeps</h1>

@@ -1,5 +1,5 @@
 <template>
-  <div class="keep-details container-fluid">
+  <div class="keep-details container-fluid bg-light">
     <div class="row text-center pb-2">
       <div class="col-12 pt-2 pb-2">
         <h1>{{keep.name}}</h1>
@@ -50,7 +50,7 @@
             </div>
           </div>
         </div>
-        <div @click="collectKeep(keep)" class="cp w-100">
+        <div @click="collectKeep(keep.id)" class="cp w-100">
           <i class="fas fa-box-open stats-icon"></i>
         </div>
       </div>
@@ -81,11 +81,13 @@
 
 <script>
 import { onAuth } from "@bcwdev/auth0-vue";
+import NS from "../NotificationService.js";
 export default {
   name: "KeepDetails",
   mounted() {
     onAuth().then(res => {
       this.$store.dispatch("getKeepById", this.keepId);
+      this.$store.dispatch("getVaults");
     });
   },
   props: ["keepId"],
@@ -95,9 +97,45 @@ export default {
   computed: {
     keep() {
       return this.$store.state.activeKeep;
+    },
+    vaults() {
+      return this.$store.state.vaults;
     }
   },
-  methods: {}
+  methods: {
+    async collectKeep(KeepId) {
+      let vaults = this.getVaultInfo();
+      if (this.$auth.isAuthenticated) {
+        let id = await NS.pickVault(vaults);
+        let VaultId = parseInt(id);
+        if (!isNaN(VaultId)) {
+          this.$store.dispatch("createVaultKeep", { KeepId, VaultId });
+          this.increaseKeepCount();
+        }
+      } else {
+        NS.errorMessage("You must be logged in to keep");
+      }
+    },
+    getVaultInfo() {
+      let newVaults = {};
+      this.vaults.map(vault => {
+        newVaults[vault.id] = vault.name;
+      });
+      return newVaults;
+    },
+    increaseViewCount() {
+      this.keep.views++;
+      this.$store.dispatch("keepCount", this.keep);
+    },
+    increaseKeepCount() {
+      this.keep.keeps++;
+      this.increaseViewCount();
+    },
+    increaseShareCount() {
+      this.keep.shares++;
+      this.increaseViewCount();
+    }
+  }
 };
 </script>
 
@@ -111,5 +149,12 @@ export default {
 }
 .cp {
   cursor: pointer;
+}
+.dropdown-menu {
+  min-width: 7rem;
+}
+.dropdown-item {
+  border: 1px solid rgb(248, 248, 248);
+  font-size: 1.2em;
 }
 </style>

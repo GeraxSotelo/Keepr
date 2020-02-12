@@ -1,5 +1,5 @@
 <template>
-  <div class="home container-fluid">
+  <div class="home container-fluid bg-light">
     <div class="row">
       <div class="col-12 text-center">
         <h1>Kreepr</h1>
