@@ -50,8 +50,7 @@ export default {
       this.$store.dispatch("getVaults");
       this.$store.dispatch("getKeepsByUserId");
     });
-    //TODO  make this method in the store!!!
-    // this.$store.dispatch("resetActiveVault");
+    this.$store.dispatch("resetActiveVault");
   },
   computed: {
     vaults() {
