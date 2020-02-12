@@ -4,7 +4,11 @@
       <div v-if="keepData.isPrivate" class="delete-keep text-right w-100">
         <i @click="deleteKeep(keepData.id)" class="far fa-times-circle"></i>
       </div>
-      <img :src="keepData.img" class="card-img-top" />
+      <div @click="increaseViewCount()">
+        <router-link :to="{name:'keepdetails', params: { keepId: keepData.id}}">
+          <img :src="keepData.img" class="card-img-top" />
+        </router-link>
+      </div>
       <div class="card-body">
         <div
           v-if="this.$route.name == 'vaultdetails'"
@@ -32,13 +36,13 @@
                     <div
                       @click="increaseShareCount()"
                       class="fb-share-button"
-                      data-href="https://blog.yellowoctopus.com.au/wp-content/uploads/2018/03/yellow-octopus-funny-memes-23.jpg"
+                      :data-href="keepData.img"
                       data-layout="button"
                       data-size="large"
                     >
                       <a
                         target="_blank"
-                        href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fblog.yellowoctopus.com.au%2Fwp-content%2Fuploads%2F2018%2F03%2Fyellow-octopus-funny-memes-23.jpg&amp;src=sdkpreparse"
+                        :href="'https://www.facebook.com/sharer/sharer.php?u='+keepData.img+'&amp;src=sdkpreparse'"
                         class="fb-xfbml-parse-ignore"
                       >
                         <i class="fab fa-facebook"></i>
@@ -136,19 +140,23 @@ export default {
       });
       this.decreaseKeepCount();
     },
+    increaseViewCount() {
+      this.keepData.views++;
+      this.$store.dispatch("keepCount", this.keepData);
+    },
     increaseKeepCount(keepData) {
       keepData.views++;
       keepData.keeps++;
-      this.$store.dispatch("keepViewCount", keepData);
+      this.$store.dispatch("keepCount", keepData);
     },
     decreaseKeepCount() {
       this.keepData.keeps--;
-      this.$store.dispatch("keepViewCount", this.keepData);
+      this.$store.dispatch("keepCount", this.keepData);
     },
     increaseShareCount() {
       this.keepData.views++;
       this.keepData.shares++;
-      this.$store.dispatch("keepViewCount", this.keepData);
+      this.$store.dispatch("keepCount", this.keepData);
     }
   }
 };

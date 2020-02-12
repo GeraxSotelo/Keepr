@@ -62,6 +62,7 @@ export default {
     }
   },
   methods: {
+    //TODO make keep count go up if placed in vault
     async createKeep() {
       let vaults = this.getVaultInfo();
       let vaultId = 0;

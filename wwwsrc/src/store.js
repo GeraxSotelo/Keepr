@@ -17,6 +17,7 @@ export default new Vuex.Store({
   state: {
     publicKeeps: [],
     userKeeps: [],
+    activeKeep: {},
     vaultKeeps: [],
     vaults: [],
     activeVault: {}
@@ -30,6 +31,9 @@ export default new Vuex.Store({
     },
     addToUserKeeps(state, data) {
       state.userKeeps.push(data);
+    },
+    setActiveKeep(state, data) {
+      state.activeKeep = data;
     },
     setVaultKeeps(state, data) {
       state.vaultKeeps = data;
@@ -65,6 +69,11 @@ export default new Vuex.Store({
       if (res.data.isPrivate) {
         commit("addToUserKeeps", res.data);
       }
+    },
+
+    async getKeepById({ commit, dispatch }, keepId) {
+      let res = await api.get("keeps/" + keepId);
+      commit("setActiveKeep", res.data);
     },
 
     async getKeepsByUserId({ commit, dispatch }) {
@@ -111,7 +120,7 @@ export default new Vuex.Store({
       let vk = await api.post("vaultkeeps", { KeepId: payload.KeepId, VaultId: payload.VaultId });
     },
 
-    async keepViewCount({ commit, dispatch }, update) {
+    async keepCount({ commit, dispatch }, update) {
       let res = await api.put("keeps/" + update.id, update);
     }
   }
