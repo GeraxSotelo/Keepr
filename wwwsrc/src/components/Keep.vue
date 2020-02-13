@@ -19,7 +19,6 @@
           <div class="info">Remove from Vault</div>
         </div>
         <h5 class="card-title">{{keepData.name}}</h5>
-        <p class="card-text">{{keepData.description}}</p>
         <hr />
         <div class="row">
           <div class="col-12 d-flex text-center justify-content-between">
@@ -173,7 +172,7 @@ export default {
 .card-img-top {
   max-width: 18rem;
   border-radius: 10px 10px 0 0;
-  max-height: 18rem;
+  max-height: 23rem;
 }
 .card,
 .card-body {
