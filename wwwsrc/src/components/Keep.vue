@@ -18,7 +18,12 @@
           <i class="far fa-minus-square"></i>
           <div class="info">Remove from Vault</div>
         </div>
-        <h5 class="card-title">{{keepData.name}}</h5>
+        <i
+          v-if="keepData.isPrivate"
+          @click="editKeep(keepData)"
+          class="edit-btn float-left fas fa-edit cp"
+        ></i>
+        <h5 class="text-center card-title">{{keepData.name}}</h5>
         <hr />
         <div class="row">
           <div class="col-12 d-flex text-center justify-content-between">
@@ -123,6 +128,11 @@ export default {
       });
       return newVaults;
     },
+    async editKeep(keep) {
+      let data = await NS.editKeep("Edit Keep", keep);
+      let newKeep = Object.assign(keep, data);
+      this.$store.dispatch("editKeep", newKeep);
+    },
     async deleteKeep(id) {
       await this.$store.dispatch("deleteKeep", id);
       if (this.$route.name == "vaultdetails") {
@@ -207,6 +217,9 @@ export default {
 .card:hover .fa-times-circle,
 .keep-vault:hover .fa-times-circle {
   display: inline-block;
+}
+.edit-btn {
+  line-height: 1.8;
 }
 .remove-keep {
   position: absolute;

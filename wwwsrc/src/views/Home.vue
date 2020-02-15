@@ -1,7 +1,7 @@
 <template>
   <div class="home container-fluid bg-light">
-    <div class="row">
-      <div class="col-12 text-center">
+    <div class="row pt-5">
+      <div class="col-12 text-center mt-5">
         <h1>Kreepr</h1>
       </div>
     </div>

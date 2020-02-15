@@ -93,6 +93,11 @@ export default new Vuex.Store({
       commit("setVaultKeeps", res.data);
     },
 
+    async editKeep({ commit, dispatch }, keep) {
+      let res = await api.put("keeps/" + keep.id, keep);
+      console.log(res.data);
+    },
+
     async removeKeep({ commit, dispatch }, payload) {
       let res = await api.put("vaultkeeps/removekeep", payload);
       dispatch("getKeepsByVaultId", payload.VaultId);

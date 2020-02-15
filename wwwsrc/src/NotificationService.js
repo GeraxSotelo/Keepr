@@ -50,6 +50,47 @@ export default class NotificationService {
     }
   }
 
+  static async editKeep(title = "Enter Inputs", keep) {
+    try {
+      const { value: formValues } = await Swal.fire({
+        title,
+        html:
+          `<form class="keep-form"">` +
+          `<label class="mb-0">Keep Name <span style="color: red">*</span></label>` +
+          `<input id="keepName" class="swal2-input" placeholder="Name" value="${keep.name}">` +
+          `<label class="mb-0">Description</label>` +
+          `<input id="keepDescription" class="swal2-input" placeholder="Description" value="${keep.description}">` +
+          `<label class="mb-0">Image URL</label>` +
+          `<input id="keepImg" class="swal2-input" placeholder="Image URL" value="${keep.img}">` +
+          `<span style="color: red">*</span> indicates required field` +
+          `</form>`,
+        focusConfirm: false,
+        preConfirm: () => {
+          let keepName = document.getElementById("keepName").value;
+          let keepDescription = document.getElementById("keepDescription").value;
+          let keepImg = document.getElementById("keepImg").value;
+          if (!keepName) {
+            Swal.showValidationMessage("Please fill out required fields");
+          }
+          return [
+            keepName,
+            keepDescription,
+            keepImg,
+          ];
+        }
+      });
+      if (formValues) {
+        return {
+          name: formValues[0],
+          description: formValues[1],
+          img: formValues[2],
+        };
+      }
+    } catch (error) {
+      return error;
+    }
+  }
+
   static async inputVaultData(title = "Enter Inputs", vaultData) {
     try {
       const { value: formValues } = await Swal.fire({

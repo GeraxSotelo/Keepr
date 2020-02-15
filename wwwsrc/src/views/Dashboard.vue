@@ -1,7 +1,7 @@
 <template>
   <div class="dashboard container-fluid bg-light">
-    <div class="row justify-content-around pb-3 pt-2">
-      <div class="col-12 text-center">
+    <div class="row justify-content-around pb-3 pt-5">
+      <div class="col-12 text-center mt-5">
         <h1>My Keeps</h1>
       </div>
       <div class="col-6 text-right mt-1 mb-3">
