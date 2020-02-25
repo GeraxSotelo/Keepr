@@ -50,6 +50,9 @@ export default new Vuex.Store({
     setActiveVault(state, data) {
       state.activeVault = data;
     },
+    resetActiveKeep(state) {
+      state.activeKeep = {};
+    },
     resetActiveVault(state) {
       state.activeVault = {};
     }
@@ -106,6 +109,10 @@ export default new Vuex.Store({
     async deleteKeep({ commit, dispatch }, id) {
       let res = await api.delete("keeps/" + id);
       dispatch("getKeepsByUserId");
+    },
+
+    resetActiveKeep({ commit }) {
+      commit("resetActiveKeep");
     },
 
     async getVaults({ commit, dispatch }) {

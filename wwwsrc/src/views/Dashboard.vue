@@ -50,6 +50,7 @@ export default {
       this.$store.dispatch("getVaults");
       this.$store.dispatch("getKeepsByUserId");
     });
+    this.$store.dispatch("resetActiveKeep");
     this.$store.dispatch("resetActiveVault");
   },
   computed: {

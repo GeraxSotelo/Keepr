@@ -6,18 +6,9 @@
       </div>
     </div>
     <div class="row">
-      <div
-        class="card-container col-6 col-md-3 pt-1 pb-1 mt-3 mb-3"
-        v-for="keep in publicKeeps"
-        :key="keep.id"
-      >
-        <Keep :keepData="keep" />
-      </div>
-    </div>
-    <div class="row">
       <div class="col-12 w-100 pl-5">
         <div v-masonry gutter="15" transition-duration="0.3s" item-selector=".item" class="ml-5">
-          <div v-masonry-tile class="item" v-for="(keep, index) in publicKeeps" :key="keep.id">
+          <div v-masonry-tile class="item mt-2" v-for="(keep) in publicKeeps" :key="keep.id">
             <Keep :keepData="keep" />
           </div>
         </div>
@@ -34,6 +25,7 @@ export default {
   name: "home",
   mounted() {
     this.$store.dispatch("getPublicKeeps");
+    this.$store.dispatch("resetActiveKeep");
     onAuth().then(res => {
       this.$store.dispatch("getVaults");
     });
