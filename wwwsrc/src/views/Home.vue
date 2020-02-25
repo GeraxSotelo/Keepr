@@ -1,11 +1,11 @@
 <template>
   <div class="home container-fluid bg-light">
-    <div class="row pt-5">
+    <div class="row bg-lgrey pt-5">
       <div class="col-12 text-center mt-5">
         <h1>Keepr</h1>
       </div>
     </div>
-    <div class="row">
+    <div class="row bg-lgrey">
       <div class="col-12 w-100 pl-5">
         <div v-masonry gutter="15" transition-duration="0.3s" item-selector=".item" class="ml-5">
           <div v-masonry-tile class="item mt-2" v-for="(keep) in publicKeeps" :key="keep.id">
@@ -52,4 +52,11 @@ export default {
 </script>
 
 <style scoped>
+.home h1 {
+  font-family: "Seaweed Script";
+}
+
+.bg-lgrey {
+  background-color: lightgrey;
+}
 </style>

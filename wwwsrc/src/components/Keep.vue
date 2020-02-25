@@ -171,6 +171,7 @@ export default {
   cursor: pointer;
 }
 .card {
+  font-family: "Montserrat";
   max-width: 18rem;
   box-shadow: 5px 15px 10px rgba(0, 0, 0, 0.15);
   transition: 0.25s ease;
