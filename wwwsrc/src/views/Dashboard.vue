@@ -108,7 +108,7 @@ export default {
     url("../assets/vault.jpg") no-repeat center;
   background-size: cover;
   border-radius: 10px;
-  box-shadow: 5px 10px 10px rgba(0, 0, 0, 0.35);
+  box-shadow: 10px 10px 15px rgba(0, 0, 0, 0.35);
   min-width: 10rem;
   height: 15rem;
 }

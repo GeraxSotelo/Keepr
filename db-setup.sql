@@ -78,5 +78,5 @@
 
 -- DELETE FROM keeps WHERE id = 83;
 
--- UPDATE keeps SET name = "Kitchen Designs", img = "https://hips.hearstapps.com/hmg-prod.s3.amazonaws.com/images/modern-kitchen-3-1549042754.jpg", isPrivate = 0, views = @Views, shares = @Shares, keeps = @Keeps
--- WHERE id = 85;
+-- UPDATE keeps SET name = "Cool dogs", isPrivate = 0
+-- WHERE id = 87;

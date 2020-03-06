@@ -8,7 +8,7 @@
     <div class="row bg-lgrey">
       <div class="col-12 w-100 pl-5">
         <div v-masonry gutter="15" transition-duration="0.3s" item-selector=".item" class="ml-5">
-          <div v-masonry-tile class="item mt-2" v-for="(keep) in publicKeeps" :key="keep.id">
+          <div v-masonry-tile class="item mt-3" v-for="(keep) in publicKeeps" :key="keep.id">
             <Keep :keepData="keep" />
           </div>
         </div>

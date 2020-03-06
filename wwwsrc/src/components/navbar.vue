@@ -1,6 +1,8 @@
 <template>
   <nav class="navbar navbar-expand-lg navbar-dark fixed-top bg-dark">
-    <router-link class="navbar-brand" :to="{ name: 'home' }">Keepr</router-link>
+    <router-link class="navbar-brand" :to="{ name: 'home' }">
+      <span>Keepr</span>
+    </router-link>
     <button
       class="navbar-toggler"
       type="button"
@@ -45,6 +47,7 @@ export default {
   methods: {
     async login() {
       await this.$auth.loginWithPopup();
+      await this.$auth.getUserData();
       this.$store.dispatch("setBearer", this.$auth.bearer);
       console.log("this.$auth.user: ");
       console.log(this.$auth.user);
@@ -58,4 +61,8 @@ export default {
 };
 </script>
 
-<style></style>
+<style scoped>
+.navbar .navbar-brand {
+  font-family: "Seaweed Script";
+}
+</style>
