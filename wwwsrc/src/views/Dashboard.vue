@@ -5,24 +5,29 @@
         <h1>My Keeps</h1>
       </div>
       <div class="col-6 text-right mt-1 mb-3">
-        <button @click="createKeep" class="btn btn-primary">Create Keep</button>
+        <button @click="createKeep" class="btn create-keep-btn">Create Keep</button>
       </div>
       <div class="col-6 text-left mt-1 mb-3">
-        <button @click="createVault" class="btn btn-success">Create Vault</button>
+        <button @click="createVault" class="btn create-vault-btn">Create Vault</button>
       </div>
     </div>
 
     <div class="row justify-content-around pt-1">
       <div class="col-12 col-sm-6 col-md-4 pt-1 pb-3 mb-3" v-for="vault in vaults" :key="vault.id">
-        <div class="card">
-          <div class="delete-vault text-right w-100">
-            <i @click="deleteVault(vault.id)" class="far fa-times-circle"></i>
+        <div class="bg-image">
+          <div class="card">
+            <div class="delete-vault text-right w-100">
+              <i @click="deleteVault(vault.id)" class="far fa-times-circle"></i>
+            </div>
+            <div class="card-body text-center">
+              <h5 class="card-title text-white">{{vault.name}}</h5>
+              <h6 class="card-subtitle mb-2 text-white">{{vault.description}}</h6>
+            </div>
+            <router-link
+              class="vault-link"
+              :to="{name:'vaultdetails', params: { vaultId: vault.id}}"
+            ></router-link>
           </div>
-          <div class="card-body text-center">
-            <h5 class="card-title text-white">{{vault.name}}</h5>
-            <h6 class="card-subtitle mb-2 text-white">{{vault.description}}</h6>
-          </div>
-          <router-link class="vault-link" :to="{name:'vaultdetails', params: { vaultId: vault.id}}"></router-link>
         </div>
       </div>
     </div>
@@ -103,22 +108,33 @@ export default {
 </script>
 
 <style scoped>
+.create-keep-btn,
+.create-vault-btn {
+  background: linear-gradient(to bottom, #a6afb4, rgb(230, 230, 230), #a6afb4);
+  border: 1px solid rgb(104, 104, 104);
+}
 .card {
-  background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
-    url("../assets/vault.jpg") no-repeat center;
-  background-size: cover;
+  background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5));
   border-radius: 10px;
-  box-shadow: 10px 10px 15px rgba(0, 0, 0, 0.35);
   min-width: 10rem;
   height: 15rem;
 }
 
 .card:hover {
-  background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
-    url("../assets/vault-open.jpg") no-repeat center;
+  background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5));
+}
+.bg-image,
+.bg-image:hover {
+  background: url("../assets/vault.jpg") no-repeat center;
   background-size: cover;
-  box-shadow: 5px 15px 30px rgba(0, 0, 0, 0.4);
+  border-radius: 10px;
+  box-shadow: 10px 10px 15px rgba(0, 0, 0, 0.35);
+  transition: all 0.3s ease-in-out;
+}
+.bg-image:hover {
+  background-image: url("../assets/vault-open.jpg");
   transform: scale(1.03);
+  box-shadow: 10px 10px 20px rgba(0, 0, 0, 0.4);
 }
 
 .card-body {

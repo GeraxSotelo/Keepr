@@ -29,7 +29,7 @@
       </ul>
       <span class="navbar-text">
         <button class="btn btn-success" @click="login" v-if="!$auth.isAuthenticated">Login</button>
-        <button class="btn btn-danger" @click="logout" v-else>Logout</button>
+        <button class="btn logout-btn" @click="logout" v-else>Logout</button>
       </span>
     </div>
   </nav>
@@ -64,5 +64,10 @@ export default {
 <style scoped>
 .navbar .navbar-brand {
   font-family: "Seaweed Script";
+}
+.logout-btn {
+  color: #fff;
+  background-color: #a8a8a8b6;
+  border-color: #cecece;
 }
 </style>
