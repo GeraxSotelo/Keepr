@@ -4,10 +4,16 @@
       <div class="col-12 pt-2 pb-2">
         <h1>{{keep.name}}</h1>
       </div>
-      <div class="col-12">
+      <div class="col-12 pt-2 pb-5">
         <img class="keep-img" :src="keep.img" />
       </div>
     </div>
+    <div class="row">
+      <div class="col-12 text-center">
+        <h3>{{keep.description}}</h3>
+      </div>
+    </div>
+    <hr />
     <div class="row pt-2">
       <div class="col-12 d-flex text-center justify-content-between mt-2">
         <div class="w-100">
@@ -69,11 +75,6 @@
           <p>Keeps:</p>
           <p>{{keep.keeps}}</p>
         </div>
-      </div>
-    </div>
-    <div class="row">
-      <div class="col-12 text-center">
-        <h3>{{keep.description}}</h3>
       </div>
     </div>
   </div>
@@ -140,12 +141,16 @@ export default {
 </script>
 
 <style scoped>
+.keep-details {
+  margin-top: 5em;
+  min-height: 90vh;
+}
 .keep-img {
   max-width: 20em;
   max-height: 30em;
 }
 .stats-icon {
-  font-size: 3em;
+  font-size: 2.5em;
 }
 .cp {
   cursor: pointer;
