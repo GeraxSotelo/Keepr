@@ -18,6 +18,13 @@ namespace Keepr.Services
       return _repo.Get();
     }
 
+    internal Keep GetPublicKeepById(int id)
+    {
+      var found = _repo.GetById(id);
+      if (found == null) { throw new Exception("Invalid Id"); }
+      return _repo.GetPublicKeepById(id);
+    }
+
     internal Keep GetById(int id)
     {
       var found = _repo.GetById(id);

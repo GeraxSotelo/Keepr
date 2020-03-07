@@ -30,6 +30,19 @@ namespace Keepr.Controllers
       };
     }
 
+    [HttpGet("{id}/publickeep")]
+    public ActionResult<Keep> GetPublicKeepById(int id)
+    {
+      try
+      {
+        return Ok(_ks.GetPublicKeepById(id));
+      }
+      catch (Exception e)
+      {
+        return BadRequest(e.Message);
+      }
+    }
+
     [HttpGet("{id}")]
     [Authorize]
     public ActionResult<Keep> GetById(int id)

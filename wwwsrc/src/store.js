@@ -80,6 +80,11 @@ export default new Vuex.Store({
       }
     },
 
+    async getPublicKeepById({ commit, dispatch }, keepId) {
+      let res = await api.get("keeps/" + keepId + "/publickeep", keepId);
+      commit("setActiveKeep", res.data);
+    },
+
     async getKeepById({ commit, dispatch }, keepId) {
       let res = await api.get("keeps/" + keepId);
       commit("setActiveKeep", res.data);

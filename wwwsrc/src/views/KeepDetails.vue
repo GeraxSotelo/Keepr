@@ -24,7 +24,7 @@
             <div data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
               <i class="fas fa-share-alt stats-icon"></i>
             </div>
-            <div v-if="this.$auth.isAuthenticated" class="dropdown-menu text-center p-0">
+            <div class="dropdown-menu text-center p-0">
               <div class="dropdown-item p-1">
                 <div
                   @click="increaseShareCount()"
@@ -39,6 +39,7 @@
                     class="fb-xfbml-parse-ignore"
                   >
                     <i class="fab fa-facebook"></i>
+                    <span class="social-name">Facebook</span>
                   </a>
                 </div>
               </div>
@@ -51,6 +52,7 @@
                   data-size="large"
                 >
                   <i class="fab fa-twitter-square"></i>
+                  <span class="social-name">Twitter</span>
                 </a>
               </div>
             </div>
@@ -86,10 +88,14 @@ import NS from "../NotificationService.js";
 export default {
   name: "KeepDetails",
   mounted() {
-    onAuth().then(res => {
+    if (!this.$auth.isAuthenticated) {
+      this.$store.dispatch("getPublicKeepById", this.$route.params.keepId);
+    } else {
       this.$store.dispatch("getKeepById", this.keepId);
       this.$store.dispatch("getVaults");
-    });
+    }
+    // onAuth().then(res => {
+    // });
   },
   props: ["keepId"],
   data() {
@@ -134,7 +140,7 @@ export default {
     },
     increaseShareCount() {
       this.keep.shares++;
-      this.increaseViewCount();
+      this.$store.dispatch("keepCount", this.keep);
     }
   }
 };
@@ -161,5 +167,9 @@ export default {
 .dropdown-item {
   border: 1px solid rgb(248, 248, 248);
   font-size: 1.2em;
+}
+.social-name {
+  padding-left: 0.5em;
+  font-size: 0.8em;
 }
 </style>
