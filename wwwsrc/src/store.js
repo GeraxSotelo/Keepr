@@ -146,6 +146,10 @@ export default new Vuex.Store({
     async keepCount({ commit, dispatch }, update) {
       let res = await api.put("keeps/" + update.id, update);
       dispatch("getKeepById", update.id);
+    },
+    async increasePublicViewCount({ commit, dispatch }, update) {
+      let res = await api.put("keeps/" + update.id + "/publicview", update);
+      commit("setActiveKeep", res.data);
     }
   }
 });

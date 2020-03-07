@@ -36,7 +36,6 @@ export default new Router({
       path: "/keepdetails/:keepId",
       name: "keepdetails",
       component: KeepDetails,
-      beforeEnter: authGuard,
       props: true
     }
   ]

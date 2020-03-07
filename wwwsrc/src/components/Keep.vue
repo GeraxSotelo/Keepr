@@ -4,7 +4,7 @@
       <div v-if="keepData.isPrivate" class="delete-keep text-right w-100">
         <i @click="deleteKeep(keepData.id)" class="far fa-times-circle"></i>
       </div>
-      <div @click="increaseViewCount()">
+      <div @click="increasePublicViewCount()">
         <router-link :to="{name:'keepdetails', params: { keepId: keepData.id}}">
           <img :src="keepData.img" class="card-img-top" />
         </router-link>
@@ -145,6 +145,10 @@ export default {
         VaultId: parseInt(this.vaultId)
       });
       this.decreaseKeepCount();
+    },
+    increasePublicViewCount() {
+      this.keepData.views++;
+      this.$store.dispatch("increasePublicViewCount", this.keepData);
     },
     increaseViewCount() {
       this.keepData.views++;

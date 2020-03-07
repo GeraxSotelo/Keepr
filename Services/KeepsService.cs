@@ -48,8 +48,16 @@ namespace Keepr.Services
     internal Keep Edit(Keep update)
     {
       var found = _repo.GetById(update.Id);
-      if (found == null) { throw new Exception("Invalid Id Bro"); }
+      if (found == null) { throw new Exception("Invalid Id"); }
       _repo.Edit(update);
+      return update;
+    }
+
+    internal Keep EditView(Keep update)
+    {
+      var found = _repo.GetById(update.Id);
+      if (found == null) { throw new Exception("Invalid Id"); }
+      _repo.EditView(update);
       return update;
     }
 
@@ -60,6 +68,5 @@ namespace Keepr.Services
       _repo.Delete(id, userId);
       return "Successfully Deleted";
     }
-
   }
 }

@@ -90,6 +90,20 @@ namespace Keepr.Controllers
       }
     }
 
+    [HttpPut("{id}/publicview")]
+    public ActionResult<Keep> EditView([FromBody] Keep update, int id)
+    {
+      try
+      {
+        update.Id = id;
+        return Ok(_ks.EditView(update));
+      }
+      catch (Exception e)
+      {
+        return BadRequest(e.Message);
+      }
+    }
+
     [HttpDelete("{id}")]
     [Authorize]
     public ActionResult<String> Delete(int id)

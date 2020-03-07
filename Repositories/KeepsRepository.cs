@@ -65,6 +65,16 @@ namespace Keepr.Repositories
       _db.Execute(sql, update);
     }
 
+    internal void EditView(Keep update)
+    {
+      string sql = @"
+      UPDATE keeps
+      SET
+      name = @Name, description = @Description, img = @Img, isPrivate = @IsPrivate, views = @Views, shares = @Shares, keeps = @Keeps
+      WHERE id = @id;";
+      _db.Execute(sql, update);
+    }
+
     internal void Delete(int id, string userId)
     {
       string sql = "DELETE FROM keeps WHERE (id = @id AND userId = @userId)";
