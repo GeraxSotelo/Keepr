@@ -87,15 +87,15 @@ import { onAuth } from "@bcwdev/auth0-vue";
 import NS from "../NotificationService.js";
 export default {
   name: "KeepDetails",
-  mounted() {
-    if (!this.$auth.isAuthenticated) {
-      this.$store.dispatch("getPublicKeepById", this.$route.params.keepId);
-    } else {
-      this.$store.dispatch("getKeepById", this.keepId);
-      this.$store.dispatch("getVaults");
-    }
-    // onAuth().then(res => {
-    // });
+  async mounted() {
+    await onAuth()
+      .then(res => {
+        this.$store.dispatch("getKeepById", this.keepId);
+        this.$store.dispatch("getVaults");
+      })
+      .catch(rej => {
+        this.$store.dispatch("getPublicKeepById", this.keepId);
+      });
   },
   props: ["keepId"],
   data() {
