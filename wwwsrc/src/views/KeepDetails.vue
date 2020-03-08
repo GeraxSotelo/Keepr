@@ -111,8 +111,9 @@ export default {
   },
   methods: {
     async collectKeep(KeepId) {
-      let vaults = this.getVaultInfo();
       if (this.$auth.isAuthenticated) {
+        await this.$store.dispatch("getVaults");
+        let vaults = this.getVaultInfo();
         let id = await NS.pickVault(vaults);
         let VaultId = parseInt(id);
         if (!isNaN(VaultId)) {
