@@ -1,8 +1,15 @@
 <template>
   <div class="home container-fluid bg-light">
-    <div class="row bg-lgrey pt-5">
-      <div class="col-12 text-center mt-5">
-        <h1>Keepr</h1>
+    <div class="row home-top-bg align-items-center">
+      <div class="col-12 text-center">
+        <div>
+          <h1>Keepr</h1>
+        </div>
+      </div>
+    </div>
+    <div class="row bg-lgrey pt-4">
+      <div class="col-12 text-center mt-3">
+        <h2>Public Keeps</h2>
       </div>
     </div>
     <div class="row bg-lgrey">
@@ -52,11 +59,25 @@ export default {
 </script>
 
 <style scoped>
+.home-top-bg {
+  background: url("../assets/collection.jpg") no-repeat center;
+  background-size: cover;
+  height: 500px;
+}
 .home h1 {
+  color: white;
   font-family: "Seaweed Script";
+  font-size: 5em;
+  text-shadow: 2px 2px 3px black;
 }
 
 .bg-lgrey {
   background-color: lightgrey;
+}
+
+@media only screen and (max-width: 768px) {
+  .home-top-bg {
+    height: 375px;
+  }
 }
 </style>
