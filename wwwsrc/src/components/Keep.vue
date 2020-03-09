@@ -164,7 +164,7 @@ export default {
     },
     increaseShareCount() {
       this.keepData.shares++;
-      this.increaseViewCount();
+      this.increasePublicViewCount();
     }
   }
 };
