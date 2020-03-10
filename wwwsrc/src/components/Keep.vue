@@ -27,10 +27,10 @@
         <hr />
         <div class="row">
           <div class="col-12 d-flex text-center justify-content-between">
-            <div class="w-100">
+            <div class="stats w-100">
               <i class="fas fa-eye"></i>
             </div>
-            <div class="cp w-100">
+            <div class="stats cp w-100">
               <div class="btn-group dropup">
                 <div data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                   <i class="fas fa-share-alt"></i>
@@ -67,7 +67,7 @@
                 </div>
               </div>
             </div>
-            <div @click="collectKeep(keepData.id)" class="cp w-100">
+            <div @click="collectKeep(keepData.id)" class="stats cp w-100">
               <i class="fas fa-box-open"></i>
             </div>
           </div>
@@ -199,6 +199,9 @@ export default {
 .stats-container p {
   font-size: 0.8em;
   margin-bottom: 0;
+}
+.stats i {
+  color: #1eb2a6;
 }
 .btn-group {
   vertical-align: unset;

@@ -1,5 +1,12 @@
 <template>
-  <div class="dashboard container-fluid bg-light">
+  <div class="dashboard container-fluid">
+    <div class="row dash-top-bg align-items-center">
+      <div class="col-12 text-center">
+        <div>
+          <h1>My Collection</h1>
+        </div>
+      </div>
+    </div>
     <div class="row justify-content-around pb-3 pt-5">
       <div class="col-12 text-center mt-5">
         <h1>My Keeps</h1>
@@ -108,10 +115,29 @@ export default {
 </script>
 
 <style scoped>
-.create-keep-btn,
+.dashboard {
+  background-color: #eef9bf;
+}
+.dash-top-bg {
+  background: url("../assets/p-collection.jpg") no-repeat center;
+  background-size: cover;
+  height: 500px;
+}
+.dash-top-bg h1 {
+  color: white;
+  font-family: "Seaweed Script";
+  font-size: 5em;
+  text-shadow: 2px 2px 3px black;
+}
+.create-keep-btn {
+  color: white;
+  background-color: #1eb2a6;
+  border: 2px solid #1eb2a6;
+}
 .create-vault-btn {
-  background: linear-gradient(to bottom, #a6afb4, rgb(230, 230, 230), #a6afb4);
-  border: 1px solid rgb(104, 104, 104);
+  background-color: rgba(255, 255, 255, 0.5);
+  border: 2px solid #1eb2a6;
+  color: #1a8d83;
 }
 .card {
   background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5));
@@ -128,7 +154,7 @@ export default {
   background: url("../assets/vault.jpg") no-repeat center;
   background-size: cover;
   border-radius: 10px;
-  box-shadow: 10px 10px 15px rgba(0, 0, 0, 0.35);
+  box-shadow: 10px 10px 15px rgba(0, 0, 0, 0.205);
   transition: all 0.3s ease-in-out;
 }
 .bg-image:hover {
@@ -161,5 +187,11 @@ export default {
 .card:hover .fa-times-circle,
 .delete-vault:hover .fa-times-circle {
   display: inline-block;
+}
+
+@media only screen and (max-width: 768px) {
+  .dash-top-bg {
+    height: 375px;
+  }
 }
 </style>

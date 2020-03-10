@@ -1,6 +1,6 @@
 <template>
   <div class="keep-details container-fluid bg-light">
-    <div class="row text-center pb-2">
+    <div class="row text-centerpb-2">
       <div class="col-12 pt-2 pb-2">
         <h1>{{keep.name}}</h1>
       </div>

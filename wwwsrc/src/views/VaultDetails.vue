@@ -1,7 +1,7 @@
 <template>
   <div class="vault-details container-fluid">
-    <div class="row text-center">
-      <div class="col-12">
+    <div class="row pt-5 text-center">
+      <div class="col-12 mt-5">
         <h1>{{vault.name}}</h1>
       </div>
       <div class="col-12">
