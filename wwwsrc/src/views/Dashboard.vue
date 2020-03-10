@@ -19,7 +19,7 @@
       </div>
     </div>
 
-    <div class="row justify-content-around pt-1">
+    <div class="row justify-content-around pt-1 pb-3">
       <div class="col-12 col-sm-6 col-md-4 pt-1 pb-3 mb-3" v-for="vault in vaults" :key="vault.id">
         <div class="bg-image">
           <div class="card">
@@ -38,13 +38,17 @@
         </div>
       </div>
     </div>
-
+    <hr />
     <div class="row pt-5">
       <div class="col-12 text-center pb-2">
         <h1>My Created Keeps</h1>
       </div>
-      <div class="col-6 col-md-3 pt-1 pb-1 mt-3 mb-5" v-for="keep in userKeeps" :key="keep.id">
-        <Keep :keepData="keep" />
+    </div>
+    <div class="col-12 w-100 pl-5">
+      <div v-masonry gutter="15" transition-duration="0.3s" item-selector=".item" class="ml-5">
+        <div v-masonry-tile class="item mt-3" v-for="keep in userKeeps" :key="keep.id">
+          <Keep :keepData="keep" />
+        </div>
       </div>
     </div>
   </div>
@@ -52,6 +56,7 @@
 
 <script>
 import { onAuth } from "@bcwdev/auth0-vue";
+import { VueMasonryPlugin } from "vue-masonry";
 import Swal from "sweetalert2";
 import NS from "../NotificationService.js";
 import Keep from "@/components/Keep.vue";
@@ -188,7 +193,10 @@ export default {
 .delete-vault:hover .fa-times-circle {
   display: inline-block;
 }
-
+hr {
+  width: 50%;
+  border-width: 3px;
+}
 @media only screen and (max-width: 768px) {
   .dash-top-bg {
     height: 375px;
