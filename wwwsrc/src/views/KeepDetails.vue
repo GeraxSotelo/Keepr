@@ -1,7 +1,7 @@
 <template>
-  <div class="keep-details container-fluid bg-light">
-    <div class="row text-centerpb-2">
-      <div class="col-12 pt-2 pb-2">
+  <div class="keep-details container-fluid">
+    <div class="row text-center pb-5">
+      <div class="col-12 pt-5 pb-2 mt-5">
         <h1>{{keep.name}}</h1>
       </div>
       <div class="col-12 pt-2 pb-5">
@@ -149,7 +149,7 @@ export default {
 
 <style scoped>
 .keep-details {
-  margin-top: 5em;
+  background-color: #eef9bf;
   min-height: 90vh;
 }
 .keep-img {
