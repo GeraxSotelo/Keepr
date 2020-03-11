@@ -10,13 +10,14 @@
     <div class="row pt-4">
       <div class="col-12 text-center mt-3">
         <h3 class="pb-2 pk-title">PUBLIC KEEPS</h3>
+        <SearchBox @search="onSearchChange" class="mb-5" />
         <hr class="pb-2" />
       </div>
     </div>
     <div class="row">
       <div class="col-12 w-100 pl-5">
         <div v-masonry gutter="15" transition-duration="0.3s" item-selector=".item" class="ml-5">
-          <div v-masonry-tile class="item mt-3" v-for="(keep) in publicKeeps" :key="keep.id">
+          <div v-masonry-tile class="item mt-3" v-for="(keep) in filteredKeeps" :key="keep.id">
             <Keep :keepData="keep" />
           </div>
         </div>
@@ -29,6 +30,7 @@
 import { onAuth } from "@bcwdev/auth0-vue";
 import { VueMasonryPlugin } from "vue-masonry";
 import Keep from "@/components/Keep.vue";
+import SearchBox from "@/components/SearchBox.vue";
 export default {
   name: "home",
   mounted() {
@@ -38,23 +40,32 @@ export default {
       this.$store.dispatch("getVaults");
     });
   },
+  data() {
+    return {
+      searchfield: ""
+    };
+  },
   computed: {
     publicKeeps() {
       return this.$store.state.publicKeeps;
+    },
+    filteredKeeps() {
+      return this.publicKeeps.filter(k => {
+        return k.name.toLowerCase().includes(this.searchfield.toLowerCase());
+      });
     }
   },
   methods: {
     logout() {
       this.$store.dispatch("logout");
     },
-    shuffle() {
-      this.publicKeeps.sort(function() {
-        return Math.random() - 0.5;
-      });
+    onSearchChange(text) {
+      this.searchfield = text;
     }
   },
   components: {
-    Keep
+    Keep,
+    SearchBox
   }
 };
 </script>
@@ -79,7 +90,7 @@ export default {
 }
 hr {
   border-color: black;
-  width: 30%;
+  width: 50%;
 }
 
 @media only screen and (max-width: 768px) {
